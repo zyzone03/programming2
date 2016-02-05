@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<p>제목 : {{post.title}}</p>
+<p>내용 : {{post.content}}</p>
+<p>휴대폰 번호 : {{post.phone}}</p>
+<p>생성일시 : {{post.created_at}}</p>
+
+<div class="panel-body">
+	{% if post.photo %}
+		<img src="{{post.photo.url}}"/>
+	{% endif %}
+
+
+<ul>
+	{% for comment in post.comment_set.all %}
+		<li>{{comment.message}}
+		<a href="{% url 'blog:comment_edit' post.pk comment.pk %}">수정</a></li>
+	{% empty %}
+		<li> 등록된 댓글이 없습니다. </li>
+	{% endfor %}
+</ul>
+
+<a href="/posts/comments/new/{{post.id}}" class='btn btn-primary'> 댓글쓰기 </a>
+<a href="/posts/edit/{{post.id}}" class='btn btn-primary'> 수정하기 </a>
+<a href="/posts/" class='btn btn-primary'> 목록으로 </a>
+
+{# <a href="comments/{{post.id}}">댓글보러가기</a> #}
+
+{% endblock content %}

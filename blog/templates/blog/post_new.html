@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% load bootstrap3 %}
+{% block content %}
+
+<form action="" method='post' enctype="multipart/form-data">
+	{% csrf_token %}
+
+	{% bootstrap_form form %}
+
+	{% buttons %}
+		<button class="btn btn-primary">
+		{% bootstrap_icon 'star' %} submit
+		</button>
+	{% endbuttons %}
+
+</form>
+{% comment %}
+<form action="" method="post">
+
+<table>
+	{{ form.as_table }}
+</table>
+
+<input type="submit" class="btn btn-primary" />
+<a href="/posts" class='btn btn-primary'> 돌아가기 </a>
+
+</form>
+
+{% endcomment %}
+
+{% endblock content %}
